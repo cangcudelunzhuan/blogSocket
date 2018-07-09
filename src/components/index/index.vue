@@ -62,6 +62,7 @@ export default {
 		this.$router.push({path: routePath})
 	},
 	loginout(){
+    this.$socket.emit('loginOut',{info:window.sessionStorage.getItem('userInfo')})
 		window.sessionStorage.setItem('userInfo',"{}")
 		location.reload()
 	},

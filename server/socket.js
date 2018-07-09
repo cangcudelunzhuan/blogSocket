@@ -39,6 +39,26 @@ socketio.getSocketio = function(server){ // http(s) server
           })
 
         })
+        socket.on('loginOut', function(msg){
+          let info = JSON.parse(msg.info)
+          console.log(">>>>"+info)
+          console.log("????"+info.name)
+          if(msg){
+            db.Online.remove({name: info.name }, function (err) {
+              if (err) {
+                console.error(err)
+                return
+              }
+              console.log("下线成功")
+            })
+          }
+          db.Online.find({}).exec(function (err, res) {
+            console.log("res:"+res.length)
+            socket.emit('getLength',{length:res.length})
+            socket.broadcast.emit('getLength',{length:res.length})
+          })
+
+        })
     })
 }
 module.exports = socketio

@@ -12,7 +12,7 @@ import 'element-ui/lib/theme-default/index.css'
 
 import VueSocketio from 'vue-socket.io'
 import socketio from 'socket.io-client'
-Vue.use(VueSocketio, socketio('http://localhost:4000/'), store)
+Vue.use(VueSocketio, socketio('http://localhost:4000/',{path: '/socket.io'}), store)
 
 Vue.use(Vuex)
 Vue.use(ElementUI)
